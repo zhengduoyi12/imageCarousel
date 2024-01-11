@@ -24,14 +24,14 @@ function App() {
             return
         }
     }
-    useEffect(() => {
-        const timer = setInterval(() => {
-            changeIndex(1)
-        }, 5000)
-        return () => {
-            clearInterval(timer)
-        }
-    })
+    // useEffect(() => {
+    //     const timer = setInterval(() => {
+    //         changeIndex(1)
+    //     }, 15000)
+    //     return () => {
+    //         clearInterval(timer)
+    //     }
+    // })
     const getImageList = async () => {
         const res = await getImageListAPI();
         setImageList(res.data)
