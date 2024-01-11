@@ -1,27 +1,9 @@
 import './index.scss';
 import { ImageCard } from '@/components/imageCard';
 import { useState, useEffect } from 'react';
+import { getImageListAPI } from '@/apis/image';
 function App() {
-    const imageList = [
-        {
-            id: 1,
-            title: 'beijing',
-            description: 'HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHXZCZXCZXCZXCZXCSADKLSJSDFKLAJFLASDFJSDKLAFJSDKAFJASDKLFNSDMAFASD',
-            url: 'http://images.pexels.com/photos/1434580/pexels-photo-1434580.jpeg'
-        },
-        {
-            id: 2,
-            title: 'shanghai',
-            description: '2SD',
-            url: 'http://images.pexels.com/photos/2614818/pexels-photo-2614818.jpeg'
-        },
-        {
-            id: 3,
-            title: 'hangzhou',
-            description: '3SD',
-            url: 'http://images.pexels.com/photos/597909/pexels-photo-597909.jpeg'
-        },
-    ]
+    const [imageList, setImageList] = useState([])
     const [currentIndex, setCurrentIndex] = useState(0)
     const changeIndex = (num) => {
         let res = currentIndex + num
@@ -46,6 +28,14 @@ function App() {
             clearInterval(timer)
         }
     })
+    const getImageList = async () => {
+        const res = await getImageListAPI();
+        setImageList(res.data)
+    }
+    useEffect(() => {
+        getImageList()
+    }, [])
+
     return (
 
         <div className="image-slider">
