@@ -1,5 +1,5 @@
 import './index.scss';
-
+import { ImageCard } from '@/components/imageCard';
 function App() {
     const imageList = [
         {
@@ -25,18 +25,11 @@ function App() {
 
         <div className="image-slider">
             {imageList.map(item =>
-                <div className="slide current">
-                    <img src={item.url} alt='' className="image" />
-
-                    < div className="content">
-                        <h1 className="title">{item.title}</h1>
-                        <div className="description">{item.description} </div>
-                    </div>
-
-                </div >
+                <ImageCard props={item} key={item.id}/>
             )}
-            <div id="prev">1 </div>
-            <div id="next">2</div>
+            {/* <div id="prev">1 </div> */}
+            <i id="prev" class="fa-solid fa-chevron-left"></i>
+            <i id="next" class="fa-solid fa-chevron-right"></i>
         </div>
 
     )
