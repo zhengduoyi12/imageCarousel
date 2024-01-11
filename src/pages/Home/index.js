@@ -1,11 +1,11 @@
 import './index.scss';
 import { ImageCard } from '@/components/imageCard';
 import { useState, useEffect,useMemo } from 'react';
-import { getImageListAPI } from '@/apis/image';
-import { loadIndex } from '@/utils/load'
+import { loadIndex } from '@/utils/load';
+import { useImageList } from '@/hooks/useImageList';
 
 function App() {
-    const [imageList, setImageList] = useState([])
+    const { imageList } = useImageList();
     const [currentIndex, setCurrentIndex] = useState(0)
     //load 3 pic [current-1, current, current+1] 
     const calculation = useMemo(() => loadIndex(currentIndex,imageList.length), [currentIndex,imageList.length]);
@@ -32,13 +32,6 @@ function App() {
             clearInterval(timer)
         }
     })
-    const getImageList = async () => {
-        const res = await getImageListAPI();
-        setImageList(res.data)
-    }
-    useEffect(() => {
-        getImageList()
-    }, [])
 
     return (
 
